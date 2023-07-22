@@ -6,7 +6,7 @@ Hi, I'm Daniel, a full stack web developer. This project represents a great chal
 ## Technologies Used
 Express.js for the backend and handling routes.
 Mongoose for interacting with the MongoDB database.
-Passport.js for user authentication.
+It uses bcrypt to encrypt passwords and make them secure.
 Responsive design for optimal user experience on different devices.
 ## Installation and Local Usage
 Fork this repo
@@ -48,21 +48,20 @@ The application has the following user roles:
 |Role | Capabilities |
 | :---:  |      -------------------------------------------------------------          |
 |admin |    Can perform all CRUD actions on News Articles and manage users. |
-|editor |   Can perform all CRUD actions on News Articles. |
-|user | Can read News Articles without registering, but needs to log in to view full content and make comments. |
+|user | Can read News Articles without registering, but needs to log in to view full content and make comments. |cd
 
 ## Routes
 
 | Method | Endpoint             | Require                            | Response (200)                  | Action                                                |
 |--------|----------------------|------------------------------------|---------------------------------|-------------------------------------------------------|
-| POST   | /signup              | { username, email, password }      | json({user: user})              | Registers the user in the database and returns the user.  |
-| POST   | /login               | { email, password }                | json({user: user})              | Logs in a registered user and returns the user.          |
-| GET    | /logout              | -                                  | json({message: "Logout successful"}) | Logs out the current user.                               |
-| GET    | /news-articles       | -                                  | json([allArticles])             | Returns an array with all News Articles.                 |
-| GET    | /news-articles/:id   | { id }                             | json({article})                 | Returns the information of the specified News Article.   |
-| POST   | /news-articles       | { title, content, author, section }| json({article})                 | Creates a new News Article in the database.              |
-| PUT    | /news-articles/:id   | { id }                             | json({updatedArticle})          | Updates the specified News Article in the database.      |
-| DELETE | /news-articles/:id   | { id }                             | json({message: "Article deleted"}) | Deletes the specified News Article from the database.    |
-| POST   | /comments/:id        | { id, content, author }            | json({comment})                 | Creates a new comment on the specified News Article.     |
-| PUT    | /comments/:id        | { id }                             | json({updatedComment})          | Updates the specified comment on the News Article.       |
-| DELETE | /comments/:id        | { id }                             | json({message: "Comment deleted"}) | Deletes the specified comment from the News Article.     |
+| POST   | /signup              | { username, email, password }      | res.reder({user: user})              | Registers the user in the database and returns the user.  |
+| POST   | /login               | { email, password }                | res.reder({user: user})              | Logs in a registered user and returns the user.          |
+| GET    | /logout              | -                                  | res.reder({message: "Logout successful"}) | Logs out the current user.                               |
+| GET    | /news-articles       | -                                  | res.reder([allArticles])             | Returns an array with all News Articles.                 |
+| GET    | /news-articles/:id   | { id }                             | res.reder({article})                 | Returns the information of the specified News Article.   |
+| POST   | /news-articles       | { title, content, author, section }| jres.reder({article})                 | Creates a new News Article in the database.              |
+| PUT    | /news-articles/:id   | { id }                             | res.reder({updatedArticle})          | Updates the specified News Article in the database.      |
+| DELETE | /news-articles/:id   | { id }                             | res.reder({message: "Article deleted"}) | Deletes the specified News Article from the database.    |
+| POST   | /comments/:id        | { id, content, author }            | res.reder({comment})                 | Creates a new comment on the specified News Article.     |
+| PUT    | /comments/:id        | { id }                             | res.redern({updatedComment})          | Updates the specified comment on the News Article.       |
+| DELETE | /comments/:id        | { id }                             | res.reder({message: "Comment deleted"}) | Deletes the specified comment from the News Article.     |
