@@ -54,7 +54,7 @@ The application has the following user roles:
 ## Routes
 |Method|	Endpoint|	Require	|Response (200) |	Action |
 |
-| :----: | --------------------------- | --------------------------------------------------- |---------------------------------------------------------------------- | ------------------------------------------------------------------------- |
+| :----: | --------------------------- 
 |POST | /signup | { username, email, password } |	json({user: user}) |	Registers the user in the database and returns the user. |
 |POST | /login |	{ email, password }	json({user: user}) |	Logs in a registered user and returns the user. |
 |GET |	/logout |	- | json({message: "Logout successful"}) |	Logs out the current user. |
