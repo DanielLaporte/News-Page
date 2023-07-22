@@ -52,17 +52,17 @@ The application has the following user roles:
 |user | Can read News Articles without registering, but needs to log in to view full content and make comments. |
 
 ## Routes
-|Method|	Endpoint|	Require	|Response (200) |	Action |
-|
-| :----: | --------------------------- 
-|POST | /signup | { username, email, password } |	json({user: user}) |	Registers the user in the database and returns the user. |
-|POST | /login |	{ email, password }	json({user: user}) |	Logs in a registered user and returns the user. |
-|GET |	/logout |	- | json({message: "Logout successful"}) |	Logs out the current user. |
-|GET |	/news-articles |	- |	json([allArticles])	|Returns an array with all News Articles. |
-|GET |	/news-articles/:id |	{ id } |json({article}) |   Returns the information of the specified News Article. |
-|POST | /news-articles | { title, content, author, section} | json({article}) |	Creates a new News Article in the database. |
-|PUT | /news-articles/:id |	{ id } |json({updatedArticle}) | Updates the specified News Article in the database. |
-|DELETE | /news-articles/:id | { id } |	json({message: "Article deleted"}) | Deletes the specified News Article from the database.|
-|POST |	/comments/:id |	{ id, content, author } | json({comment}) |	Creates a new comment on the specified News Article. |
-|PUT | /comments/:id | { id }| json({updatedComment})	|Updates the specified comment on the News Article. |
-|DELETE | /comments/:id	| { id } | json({message: "Comment deleted"}) |	Deletes the specified comment from the News Article. |
+
+| Method | Endpoint             | Require                            | Response (200)                  | Action                                                |
+|--------|----------------------|------------------------------------|---------------------------------|-------------------------------------------------------|
+| POST   | /signup              | { username, email, password }      | json({user: user})              | Registers the user in the database and returns the user.  |
+| POST   | /login               | { email, password }                | json({user: user})              | Logs in a registered user and returns the user.          |
+| GET    | /logout              | -                                  | json({message: "Logout successful"}) | Logs out the current user.                               |
+| GET    | /news-articles       | -                                  | json([allArticles])             | Returns an array with all News Articles.                 |
+| GET    | /news-articles/:id   | { id }                             | json({article})                 | Returns the information of the specified News Article.   |
+| POST   | /news-articles       | { title, content, author, section }| json({article})                 | Creates a new News Article in the database.              |
+| PUT    | /news-articles/:id   | { id }                             | json({updatedArticle})          | Updates the specified News Article in the database.      |
+| DELETE | /news-articles/:id   | { id }                             | json({message: "Article deleted"}) | Deletes the specified News Article from the database.    |
+| POST   | /comments/:id        | { id, content, author }            | json({comment})                 | Creates a new comment on the specified News Article.     |
+| PUT    | /comments/:id        | { id }                             | json({updatedComment})          | Updates the specified comment on the News Article.       |
+| DELETE | /comments/:id        | { id }                             | json({message: "Comment deleted"}) | Deletes the specified comment from the News Article.     |
