@@ -23,13 +23,13 @@ router.get("/signup", isLoggedOut, (req, res) => {
 
 // POST /auth/signup
 router.post("/signup", isLoggedOut, (req, res, next) => {
-  const { username, email, password, passwordRepeat  } = req.body;
+  let { username, email, password, passwordRepeat } = req.body;
 
   // Check that username, email, and password are provided
   if (username == "" || email == "" || password == "" || passwordRepeat == "") {
     res.status(400).render("auth/signup", {
       errorMessage:
-        "All fields are mandatory. Please provide your username, email and password.",
+        "All fields are mandatory. Please provide your username, email, and password.",
     });
 
     return;
@@ -43,41 +43,49 @@ router.post("/signup", isLoggedOut, (req, res, next) => {
     return;
   }
 
-  //   ! This regular expression checks password for special characters and minimum length
-  /*
-  const regex = /(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}/;
-  if (!regex.test(password)) {
-    res
-      .status(400)
-      .render("auth/signup", {
-        errorMessage: "Password needs to have at least 6 chars and must contain at least one number, one lowercase and one uppercase letter."
+  if (password != passwordRepeat) {
+    res.render("auth/signup", {
+      errorMessage: "The passwords do not match.",
     });
     return;
   }
-  */
 
-  // Create a new user - start by hashing the password
-  bcrypt
-    .genSalt(saltRounds)
-    .then((salt) => bcrypt.hash(password, salt))
-    .then((hashedPassword) => {
-      // Create a user and save it in the database
-      return User.create({ username, email, password: hashedPassword });
-    })
-    .then((user) => {
-      res.redirect("/auth/login");
+  User.find({ username })
+    .then((result) => {
+      if (result.length != 0) {
+        res.render("auth/signup", {
+          errorMessage:
+            "The user already exists, please choose another one.",
+        });
+        return;
+      }
+
+      // Create a new user - start by hashing the password
+      bcrypt
+        .genSalt(saltRounds)
+        .then((salt) => bcrypt.hash(password, salt))
+        .then((hashedPassword) => {
+          // Create a user and save it in the database
+          return User.create({ username, email, password: hashedPassword });
+        })
+        .then((user) => {
+          res.redirect("/auth/login");
+        })
+        .catch((error) => {
+          if (error instanceof mongoose.Error.ValidationError) {
+            res.status(500).render("auth/signup", { errorMessage: error.message });
+          } else if (error.code === 11000) {
+            res.status(500).render("auth/signup", {
+              errorMessage:
+                "Username and email need to be unique. Provide a valid username or email.",
+            });
+          } else {
+            next(error);
+          }
+        });
     })
     .catch((error) => {
-      if (error instanceof mongoose.Error.ValidationError) {
-        res.status(500).render("auth/signup", { errorMessage: error.message });
-      } else if (error.code === 11000) {
-        res.status(500).render("auth/signup", {
-          errorMessage:
-            "Username and email need to be unique. Provide a valid username or email.",
-        });
-      } else {
-        next(error);
-      }
+      next(error);
     });
 });
 
@@ -150,8 +158,8 @@ router.get("/logout", isLoggedIn, (req, res) => {
       return;
     }
 
-    res.redirect("/");
+    res.redirect("/"); // Corrección: redirige a la raíz después de cerrar sesión.
   });
 });
 
-module.exports = router;
+module.exports = router; 
