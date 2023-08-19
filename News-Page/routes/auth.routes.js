@@ -15,6 +15,7 @@ const User = require("../models/User.model");
 const isLoggedOut = require("../middleware/isLoggedOut");
 const isLoggedIn = require("../middleware/isLoggedIn");
 const isAdmin = require("../middleware/isAdmin");
+const adminRoutes = require("./admin.routes");
 
 // GET /auth/signup
 router.get("/signup", isLoggedOut, (req, res) => {
@@ -23,10 +24,10 @@ router.get("/signup", isLoggedOut, (req, res) => {
 
 // POST /auth/signup
 router.post("/signup", isLoggedOut, (req, res, next) => {
-  let { username, email, password, passwordRepeat } = req.body;
+  let { username, email, password, passwordRepeat, role } = req.body;
 
   // Check that username, email, and password are provided
-  if (username == "" || email == "" || password == "" || passwordRepeat == "") {
+  if (username == "" || email == "" || password == "" || passwordRepeat == "" || role == "") {
     res.status(400).render("auth/signup", {
       errorMessage:
         "All fields are mandatory. Please provide your username, email, and password.",
@@ -66,7 +67,7 @@ router.post("/signup", isLoggedOut, (req, res, next) => {
         .then((salt) => bcrypt.hash(password, salt))
         .then((hashedPassword) => {
           // Create a user and save it in the database
-          return User.create({ username, email, password: hashedPassword });
+          return User.create({ username, email, password: hashedPassword, role });
         })
         .then((user) => {
           res.redirect("/auth/login");
@@ -96,10 +97,10 @@ router.get("/login", isLoggedOut, (req, res) => {
 
 // POST /auth/login
 router.post("/login", isLoggedOut, (req, res, next) => {
-  const { username, email, password } = req.body;
+  const { username, email, password, role } = req.body;
 
   // Check that username, email, and password are provided
-  if (username === "" || email === "" || password === "") {
+  if (username === "" || email === "" || password === "" || role === "") {
     res.status(400).render("auth/login", {
       errorMessage:
         "All fields are mandatory. Please provide username, email and password.",
@@ -161,5 +162,14 @@ router.get("/logout", isLoggedIn, (req, res) => {
     res.redirect("/"); // Corrección: redirige a la raíz después de cerrar sesión.
   });
 });
+
+// Agrega las rutas de administración al enrutador
+router.use("/admin", adminRoutes);
+
+router.get("/international", isLoggedOut, (req, res) => {
+  res.render("articles/international");
+});
+
+
 
 module.exports = router; 
