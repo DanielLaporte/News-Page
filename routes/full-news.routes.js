@@ -1,22 +1,18 @@
 const express = require('express');
 const router = express.Router();
-const NewsArticle = require('../models/newsArticle'); // Ajusta la ruta al modelo
-
-// Otras rutas y configuraciones...
-
-router.get('newsarticles/:id', (req, res, next) => {
+const NewsArticle = require('../models/newsArticle'); 
+router.get('/:id', (req, res, next) => {
   const newsArticleId = req.params.id;
-  
+
   NewsArticle.findById(newsArticleId)
-    .populate('author')
+    .populate('/:id')
     .exec((err, newsArticle) => {
       if (err) {
         return next(err);
       }
-      
-      res.render('articles/full-news', { newsArticle }); // Renderizar vista de noticia completa
+
+      res.render('articles/full-news', { newsArticle }); // 
     });
 });
 
 module.exports = router;
-

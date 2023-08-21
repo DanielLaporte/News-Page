@@ -1,16 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{{appTitle}} - Full News</title>
+</head>
 <body class="index-page">
   <h1>{{appTitle}} - Full News</h1>
 
   <div class="contenido">
-    {{#each newsArticles}}
-      <div class="news-article">
-        <h3>{{section}}</h3>
-        <h2><a class="article-link" href="/articles/{{_id}}">{{title}}</a></h2>
-        
-        <p>Author: {{author}}</p>
-        
-          
-      </div>
-    {{/each}}
+    <div class="news-article">
+      <h3>{{newsArticle.section}}</h3>
+      <h2><a class="article-link" href="/articles/{{newsArticle._id}}">{{newsArticle.title}}</a></h2>
+      <p>Author: {{newsArticle.author}}</p>
+    </div>
   </div>
 </body>
+</html>

@@ -53,6 +53,7 @@ app.use("/articles", healthRoutes);
 
 
 
+
 app.use((req, res, next) => {
     res.locals.isAdmin = req.session.currentUser && req.session.currentUser.role === "admin";
     next();
