@@ -2,20 +2,16 @@
   <h1>{{appTitle}}</h1>            
   <p>News for everyone!</p>
 
-  {{#if isAdmin}}
-    <button id="publish-news" class="button"><a href="/admin/publish-news">Publish News</a></button>
-    <button class="edit-button"><a href="/admin/edit-news">Edit</a></button>
-  {{/if}}
-  
+   
   <button id="login" class="button"><a href="/auth/login">login</a></button>
   <button id="logout" class="button"><a href="/auth/logout">logout</a></button>
   <button id="signup" class="button"><a href="/auth/signup">signup</a></button>
-
+  <button id="home" class="button"><a href="/" class="index-button">Home</a></button>
   <br>
   <br>
 
   <div class="navbar">
-    <img src="./images/3749906.jpg" alt="Logo">
+    <img src="../images/3749906.jpg" alt="Logo">
     
     <a href="/articles/health">Health</a>
     <a href="/articles/sports">Sports</a>
@@ -28,7 +24,6 @@
   <div class="contenido">
     {{#each newsArticles}}
       <div class="news-article">
-        <h3>{{section}}</h3>
         <h2><a class="article-link" href="/articles/{{_id}}">{{title}}</a></h2>
         <p>{{content}}</p>
         <p>Author: {{author}}</p>

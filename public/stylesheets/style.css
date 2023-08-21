@@ -1,14 +1,30 @@
 body {
   padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  font: 16px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
 
 a {
-  color: #00b7ff;
+  color: #097bb3;
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+
+aa {
+  color: #03161e;
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
 
 h1 {
-  color: 40px;
+  font: 40px;
+}
+
+h2 {
+  font: 40px;
+  
+}
+
+h3 {
+  font: 30px;
+  color: #0f81ae;
 }
 
 .index-page {
@@ -18,7 +34,10 @@ h1 {
 }
 
 .navbar {
+ 
+  align-items: center;
   background-color: #e70f0f;
+  height: 60px;
   overflow: hidden;
 }
 
@@ -37,9 +56,49 @@ h1 {
   text-align: center;
   padding: 22px 25px;
   text-decoration: none;
+  font-size: 16px;
 }
 
 .navbar a:hover {
-  background-color: #ddd;
+  background-color: #efeef4;
   color: rgb(230, 11, 11);
+}
+
+
+
+/* Estilos para el contenedor de noticias */
+.contenido {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+/* Estilos para cada artículo de noticia */
+.news-article {
+  width: calc(33.33% - 20px); /* Espacio entre elementos */
+  margin-bottom: 20px;
+}
+
+/* Estilos para el artículo principal */
+.news-article.large {
+  width: 100%;
+}
+
+.news-article h2 a {
+  text-decoration: none; 
+}
+
+.news-article h2:hover {
+  color: #4229ce;
+  cursor: pointer; 
+}
+
+.article-link {
+  color: #12100f;
+  font-size: 25px;
+  font-weight: bold;
+}
+
+.article-link:hover {
+  color: #a5a4c2; /* Cambia al color que desees al pasar el cursor */
 }

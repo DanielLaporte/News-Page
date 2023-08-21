@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Edit News</title>
+    <h2>Edit News</h2>
+
+    {{isAdmin}}
+
+    <button id="publish-news" class="button"><a href="/admin/publish-news">Publish News</a></button>
+    <button id="logout" class="button"><a href="/auth/logout">logout</a></button>
+    <button id="home" class="button"><a href="/" class="index-button">Home</a></button>
+</head>
+
+
+ <div class="contenido">
+  <ul>
+    {{#each newsArticles}}
+      <li>
+        <div class="news-article">
+          <form action="/admin/edit-news/{{this._id}}/update" method="POST">
+            <label for="title"><h2>Title:</h2></label>
+            <input type="text" id="title" name="title" value="{{this.title}}" required><br>
+
+            <label for="content"><h2>Content:</h2></label>
+            <textarea id="content" name="content" rows="8" required>{{this.content}}</textarea><br>
+
+            <label for="author"><h2>Author:</h2></label>
+            <input type="text" id="author" name="author" value="{{this.author}}" required><br>
+
+            <label for="section"><h2>Section:</h2></label>
+            <input type="text" id="section" name="section" value="{{this.section}}" required><br> 
+            
+            
+            <br>
+            <button type="submit">Update</button>
+
+          </form>
+
+          <form action="/admin/edit-news/{{this._id}}/delete" method="POST">
+            <button type="submit" class="delete-button">Delete</button>
+          </form>
+
+        </div>
+      </li>
+    {{/each}}
+  </ul>
+            
+          <button id="home" class="button"><a href="/" class="index-button">Home</a></button>
+</div>
+</body>
+</html>

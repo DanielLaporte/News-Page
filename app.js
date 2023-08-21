@@ -33,11 +33,30 @@ app.use("/auth", authRoutes);
 const adminRoutes = require("./routes/admin.routes");
 app.use("/admin", adminRoutes);
 
+const internationalRoutes = require("./routes/international-news.routes");
+app.use("/articles", internationalRoutes);
+
+const politicsRoutes = require("./routes/politics-news.routes");
+app.use("/articles", politicsRoutes);
+
+const economyRoutes = require("./routes/economy-news.routes");
+app.use("/articles", economyRoutes);
+
+const scienceRoutes = require("./routes/science-news.routes");
+app.use("/articles", scienceRoutes);
+
+const sportsRoutes = require("./routes/sports-news.routes");
+app.use("/articles", sportsRoutes);
+
+const healthRoutes = require("./routes/health-news.routes");
+app.use("/articles", healthRoutes);
+
 app.use((req, res, next) => {
     res.locals.isAdmin = req.session.currentUser && req.session.currentUser.role === "admin";
     next();
   });
 
+  
   
 
 // ❗ To handle errors. Routes that don't exist or errors that you handle in specific routes

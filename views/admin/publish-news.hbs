@@ -1,12 +1,19 @@
 <div id="publish-news-form">
   <h2>Publish News</h2>
   <form action="/admin/publish-news" method="POST">
+
+    <button id="home" class="button"><a href="/" class="index-button">Home</a></button>
+
     <label> Title
       <input type="text" name="title" placeholder="Title of the news" />
     </label>
 
     <label> Content
       <textarea name="content" placeholder="Content of the news"></textarea>
+    </label>
+    
+    <label> author
+      <input type="text" name="Author" placeholder="Author" />
     </label>
 
     <label> Section
@@ -15,4 +22,5 @@
 
     <button type="submit">Publish</button>
   </form>
+  
 </div>
