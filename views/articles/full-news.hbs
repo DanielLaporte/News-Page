@@ -1,0 +1,16 @@
+<body class="index-page">
+  <h1>{{appTitle}} - Full News</h1>
+
+  <div class="contenido">
+    {{#each newsArticles}}
+      <div class="news-article">
+        <h3>{{section}}</h3>
+        <h2><a class="article-link" href="/articles/{{_id}}">{{title}}</a></h2>
+        
+        <p>Author: {{author}}</p>
+        
+          
+      </div>
+    {{/each}}
+  </div>
+</body>
