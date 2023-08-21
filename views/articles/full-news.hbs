@@ -1,18 +1,31 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>{{appTitle}} - Full News</title>
-</head>
 <body class="index-page">
-  <h1>{{appTitle}} - Full News</h1>
+  <h1>{{appTitle}}</h1>            
+  <p>News for everyone!</p>
 
+   
+  <button id="login" class="button"><a href="/auth/login">login</a></button>
+  <button id="logout" class="button"><a href="/auth/logout">logout</a></button>
+  <button id="signup" class="button"><a href="/auth/signup">signup</a></button>
+  <button id="home" class="button"><a href="/" class="index-button">Home</a></button>
+  <br>
+  <br>
+
+  <div class="navbar">
+    <img src="../images/3749906.jpg" alt="Logo">
+    
+    <a href="/articles/health">Health</a>
+    <a href="/articles/sports">Sports</a>
+    <a href="/articles/science">Science</a>
+    <a href="/articles/economy">Economy</a>
+    <a href="/articles/politics">Politics</a>
+    <a href="/articles/international">International</a>
+  </div>
   <div class="contenido">
     <div class="news-article">
       <h3>{{newsArticle.section}}</h3>
       <h2><a class="article-link" href="/articles/{{newsArticle._id}}">{{newsArticle.title}}</a></h2>
       <p>Author: {{newsArticle.author}}</p>
+      <p>{{newsArticle.content}}</p>
     </div>
   </div>
 </body>
