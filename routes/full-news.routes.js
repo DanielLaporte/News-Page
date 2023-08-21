@@ -1,11 +1,11 @@
 const express = require('express');
 const router = express.Router();
-const NewsArticle = require('../models/newsArticle'); 
+const NewsArticle = require('../models/NewsArticle.model'); 
+
 router.get('/:id', (req, res, next) => {
   const newsArticleId = req.params.id;
 
   NewsArticle.findById(newsArticleId)
-    .populate('/:id')
     .exec((err, newsArticle) => {
       if (err) {
         return next(err);

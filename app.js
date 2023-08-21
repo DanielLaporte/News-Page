@@ -51,6 +51,9 @@ app.use("/articles", sportsRoutes);
 const healthRoutes = require("./routes/health-news.routes");
 app.use("/articles", healthRoutes);
 
+const fullhRoutes = require("./routes/full-news.routes");
+app.use("/articles", fullhRoutes);
+
 
 
 
