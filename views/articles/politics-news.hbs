@@ -2,7 +2,7 @@
   <h1>{{appTitle}}</h1>            
   <p>News for everyone!</p>
 
-   
+ 
   <button id="login" class="button"><a href="/auth/login">login</a></button>
   <button id="logout" class="button"><a href="/auth/logout">logout</a></button>
   <button id="signup" class="button"><a href="/auth/signup">signup</a></button>
@@ -24,6 +24,7 @@
   <div class="contenido">
     {{#each newsArticles}}
       <div class="news-article">
+        <h3>{{section}}</h3>
         <h2><a class="article-link" href="/articles/{{_id}}">{{title}}</a></h2>
         <p>{{content}}</p>
         <p>Author: {{author}}</p>
